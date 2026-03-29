@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doyeen Homes | Book Luxury Shortlets</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* {margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+
+body {background:#fff;color:#222;}
+
+header {
+    position: fixed;
+    width: 100%;
+    background: white;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    z-index: 1000;
+}
+
+header h2 {color:#c9a646;}
+
+   .hero {
+    height: 100vh;
+    background: url('images/livingroom.doyeenhomes.jpeg') center/cover no-repeat;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:white;
+}
+.hero p {margin:10px 0;}
+
+.btn {
+    padding:12px 25px;
+    background:#c9a646;
+    color:white;
+    text-decoration:none;
+    border:none;
+    cursor:pointer;
+    border-radius:5px;
+}
+
+section {padding:80px 40px;text-align:center;}
+
+h2 {margin-bottom:20px;}
+
+.booking-box {
+    max-width:500px;
+    margin:auto;
+    background:#f9f9f9;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.booking-box input, select {
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+}
+
+.price {
+    font-size:20px;
+    margin:10px 0;
+    color:#c9a646;
+}
+
+.card-container {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
+}
+
+.card {
+    width:280px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.card img {width:100%;}
+
+.features {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+}
+
+.features div {
+    background:#eee;
+    padding:10px 15px;
+    border-radius:5px;
+}
+
+.cta {background:#111;color:white;}
+
+footer {padding:20px;background:#f1f1f1;text-align:center;}
+
+/* Floating WhatsApp */
+.whatsapp-float {
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#25D366;
+    color:white;
+    padding:15px;
+    border-radius:50%;
+    font-size:20px;
+    text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h2>Doyeen Homes</h2>
+</header>
+
+<div class="hero">
+<div>
+<h1>Luxury Shortlet Experience</h1>
+<p>Book premium apartments in seconds</p>
+<a href="#booking" class="btn">Book Now</a>
+</div>
+</div>
+
+<!-- BOOKING -->
+<section id="booking">
+<h2>Book Your Stay</h2>
+
+<div class="booking-box">
+    <input type="date" id="checkin">
+    <input type="date" id="checkout">
+
+    <select id="apartment">
+        <option value="70000">Luxury 1 Bedroom - ₦70,000/night</option>
+        <option value="120000">luxury 2 Bedroom - ₦120,000/night</option>
+        <option value="150000">luxury 3 Bedroom - ₦150,000/night</option>
+    </select>
+
+    <input type="number" id="guests" placeholder="Number of Guests">
+
+    <div class="price" id="totalPrice">Total: ₦0</div>
+
+    <button class="btn" onclick="bookNow()">Proceed to WhatsApp</button>
+</div>
+</section>
+
+<!-- APARTMENTS -->
+<section>
+<h2>Our Apartments</h2>
+<div class="card-container">
+<div class="card">
+<img src="images/1 bedroom.jpeg">
+<h3>Luxury 1 Bedroom</h3>
+</div>
+
+<div class="card">
+<img src="images/2 bedroom.jpeg">
+<h3>luxury 2 Bedroom</h3>
+</div>
+
+<div class="card">
+<img src="images/3 bedroom.jpeg" alt="luxury 3 Bedroom">
+<h3>luxury 3 Bedroom</h3>
+</div>
+</div>
+</section>
+
+<!-- FEATURES -->
+<section>
+<h2>Why Choose Us</h2>
+<div class="features">
+<div>24/7 Power</div>
+<div>Fast WiFi</div>
+<div>Smart TV</div>
+<div>Security</div>
+<div>Clean Environment</div>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+<h2>Don’t Miss Out</h2>
+<p>Secure your luxury stay today</p>
+<a href="#booking" class="btn">Reserve Now</a>
+</section>
+
+<footer>
+<p>© 2026 Doyeen Homes</p>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a class="whatsapp-float" href="https://wa.me/2349150938402">💬</a>
+
+<script>
+function calculatePrice() {
+    let checkin = new Date(document.getElementById('checkin').value);
+    let checkout = new Date(document.getElementById('checkout').value);
+    let pricePerNight = document.getElementById('apartment').value;
+
+    let days = (checkout - checkin) / (1000 * 60 * 60 * 24);
+
+    if (days > 0) {
+        let total = days * pricePerNight;
+        document.getElementById('totalPrice').innerText = "Total: ₦" + total;
+    }
+}
+
+document.getElementById('checkin').addEventListener('change', calculatePrice);
+document.getElementById('checkout').addEventListener('change', calculatePrice);
+document.getElementById('apartment').addEventListener('change', calculatePrice);
+
+function bookNow() {
+    let checkin = document.getElementById('checkin').value;
+    let checkout = document.getElementById('checkout').value;
+    let apartment = document.getElementById('apartment').selectedOptions[0].text;
+    let guests = document.getElementById('guests').value;
+    let total = document.getElementById('totalPrice').innerText;
+
+    let message = `Hello, I want to book:%0A
+Apartment: ${apartment}%0A
+Check-in: ${checkin}%0A
+Check-out: ${checkout}%0A
+Guests: ${guests}%0A
+${total}`;
+
+    window.open(`https://wa.me/2349150938402?text=${message}`);
+}
+</script>
+
+</body>
+</html>
